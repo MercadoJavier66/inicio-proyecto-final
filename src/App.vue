@@ -1,5 +1,5 @@
 <template>
-    <div id="app">
+    <div id="app" class="container">
         <Titulo></Titulo>
 
         <Login></Login>
@@ -9,9 +9,7 @@
 
         />
 
-
-
-        <div class="contenedorProductos">
+        <div class="row mt-4">
             <Producto
                 v-for="(item, i) in productos"
                 :key="i"
@@ -39,6 +37,13 @@ import Titulo from "./components/Titulo.vue";
 import Producto from "./components/Producto.vue";
 import Carrito from "./components/Carrito.vue";
 import Login from "./components/Login.vue";
+/**
+ * importo axios
+ */
+import Vue from 'vue'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
+Vue.use(VueAxios, axios)
 
 export default {
     name: "App",
@@ -50,49 +55,28 @@ export default {
     data() {
         return {
             productos: [
-                {
-                    id: 1,
-                    titulo: 'Vacio',
-                    descripcion: 'Tierno vacio realizado a las brasas. Con papas fritas',
-                    precio: 900 ,
-                    nombreImagen: "vacio.jpg",
-                    cantidad: 0
 
-                },
-                {
-                    id: 2,
-                    titulo: "Bondiola",
-                    descripcion: "Bondiola de cerdo a la parrilla, con papas fritas",
-                    precio: 700,
-                    nombreImagen: "bondio.jpg",
-                    cantidad: 0
-
-                },
-                {
-                    id: 3,
-                    titulo: "Matambre a la pizza",
-                    descripcion: "Matambre de carne con salsa de tomate, mozzarela, jamon y huevo frito",
-                    precio: 1200,
-                    nombreImagen: "matambre.jpg",
-                    cantidad: 0
-
-                },
             ],
         };
     },
     methods: {
         AgregarAlCarrito(id) {
-            let result = this.productos.find((prod) => {
-
-                return prod.id == id;
-            });
+            let result = this.productos.find(prod => prod.id == id);
 
             if (result) {
                 this.$refs.miCarrito.AgregarProducto(result);
             }
         },
+        async getProductos(){
+            const productos = await Vue.axios.get('https://628ee4bddc47852365360ef5.mockapi.io/api/v1/productos')
+            return productos
+        }
 
     },
+    created: async function(){
+        const productos = await this.getProductos()
+        this.productos = productos.data
+     },
 };
 </script>
 
@@ -107,9 +91,5 @@ body {
     text-align: center;
     color: #111;
 }
-.contenedorProductos {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+
 </style>

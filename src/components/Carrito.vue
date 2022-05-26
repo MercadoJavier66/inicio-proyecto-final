@@ -10,17 +10,18 @@
             </ul>
         </nav>
         <div v-if="mostrarListado">
-
-            <div class="container m-4">
+            <div class="m-4">
                 <ol class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-start" v-for="(prod, i) in productos" :key="i">
                         <div class="ms-2 me-auto">
                             <div class="fw-bold" style="text-align: left;">{{prod.titulo}}</div>
                             {{prod.descripcion}}
+                            <div style="text-align: left;">
+                                Precio unitario: $ {{prod.precio}}
+                            </div>
                         </div>
                         <span class="badge bg-primary rounded-pill">{{prod.cantidad}}</span>
                     </li>
-
                     <li class="list-group-item d-flex justify-content-between align-items-start">
                         <div class="ms-2 me-auto">
                             <div class="fw-bold">Total</div>
@@ -29,14 +30,13 @@
                     </li>
                 </ol>
             </div>
-
         </div>
     </div>
 </template>
 
 <script>
 
-// {{ productos.length }}
+
 export default {
     name: "Carrito",
     data() {
@@ -65,11 +65,13 @@ export default {
         AgregarProducto(producto) {
             //TODO: Ver de sumar productos iguales
             let productoEnCarrito = this.productos.find(prod => prod.id == producto.id);
+            const nuevoProducto = {...producto}
+                producto.cantidad--;
             if (productoEnCarrito) {
                 productoEnCarrito.cantidad++
             } else {
-                producto.cantidad = 1 ;
-                this.productos.push(producto);
+                nuevoProducto.cantidad = 1;
+                this.productos.push(nuevoProducto);
             }
         },
         mostrarElementosDelCarrito(){

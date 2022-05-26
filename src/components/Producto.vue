@@ -1,14 +1,15 @@
 <template>
-    <div class="card " style="width: 20rem; height: 26rem;" >
-      <img alt="titulo" :src="getImgUrl()" class="card-img-top rounded" style="" height="200"  />
-         <div class="card-body">
-    <h3 class="card-title">{{ titulo}}</h3>
-    <p class="card-text">{{ descripcion}}</p>
-    <h5>${{precio}}</h5>
-
-
+    <div class="col-6 col-sm-3">
+        <div class="card" style="width: 18rem;">
+            <img :src="nombreImagen" class="card-img-top" alt="...">
+            <div class="card-body" style="height: 15rem;">
+                <h5 class="card-title">{{ titulo }}</h5>
+                <p class="card-text recorte-texto">{{ descripcion }}</p>
+                <p class="card-text">${{ precio }}</p>
+                <p class="card-text">Stock: {{ cantidad }}</p>
+                <a href="#" class="btn btn-primary" @click="AgregarAlCarrito()">Agregar</a>
+            </div>
         </div>
-        <button type="button" class="btn btn-info" @click="AgregarAlCarrito()">Agregar</button>
     </div>
 </template>
 
@@ -25,7 +26,7 @@ export default {
             required: true,
         },
         precio: {
-            type: Number,
+            type: String,
             required: true,
         },
         descripcion: {
@@ -33,7 +34,7 @@ export default {
             required: true,
         },
         id: {
-            type: Number,
+            type: String,
             required: true,
         },
         cantidad: {
@@ -43,9 +44,6 @@ export default {
     },
 
     methods: {
-        getImgUrl() {
-            return require(`@/assets/images/${this.nombreImagen}`);
-        },
         AgregarAlCarrito() {
             this.$emit("agregar-al-carrito", this.id);
         },
@@ -54,5 +52,10 @@ export default {
 </script>
 
 <style>
-
+    .recorte-texto {
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+    }
 </style>
