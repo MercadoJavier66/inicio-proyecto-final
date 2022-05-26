@@ -1,10 +1,15 @@
 <template>
     <div id="app">
         <Titulo></Titulo>
+
+        <Login></Login>
+        <br>
          <Carrito
             ref="miCarrito"
 
         />
+
+
 
         <div class="contenedorProductos">
             <Producto
@@ -15,6 +20,7 @@
                 :descripcion="item.descripcion"
                 :precio="item.precio"
                 :nombre-imagen="item.nombreImagen"
+                :cantidad="item.cantidad"
                 @agregar-al-carrito="AgregarAlCarrito"
             >
             </Producto>
@@ -32,12 +38,13 @@
 import Titulo from "./components/Titulo.vue";
 import Producto from "./components/Producto.vue";
 import Carrito from "./components/Carrito.vue";
+import Login from "./components/Login.vue";
 
 export default {
     name: "App",
     props: [],
     components: {
-        Carrito, Producto, Titulo,
+        Carrito, Producto, Titulo, Login
     },
 
     data() {
@@ -49,6 +56,7 @@ export default {
                     descripcion: 'Tierno vacio realizado a las brasas. Con papas fritas',
                     precio: 900 ,
                     nombreImagen: "vacio.jpg",
+                    cantidad: 0
 
                 },
                 {
@@ -57,6 +65,7 @@ export default {
                     descripcion: "Bondiola de cerdo a la parrilla, con papas fritas",
                     precio: 700,
                     nombreImagen: "bondio.jpg",
+                    cantidad: 0
 
                 },
                 {
@@ -65,6 +74,7 @@ export default {
                     descripcion: "Matambre de carne con salsa de tomate, mozzarela, jamon y huevo frito",
                     precio: 1200,
                     nombreImagen: "matambre.jpg",
+                    cantidad: 0
 
                 },
             ],
@@ -76,6 +86,7 @@ export default {
 
                 return prod.id == id;
             });
+
             if (result) {
                 this.$refs.miCarrito.AgregarProducto(result);
             }

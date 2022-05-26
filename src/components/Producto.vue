@@ -36,6 +36,10 @@ export default {
             type: Number,
             required: true,
         },
+        cantidad: {
+            type: Number,
+            required: true,
+        },
     },
 
     methods: {
