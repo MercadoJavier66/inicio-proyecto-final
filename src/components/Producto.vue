@@ -7,7 +7,7 @@
                 <p class="card-text recorte-texto">{{ descripcion }}</p>
                 <p class="card-text">${{ precio }}</p>
                 <p class="card-text">Stock: {{ cantidad }}</p>
-                <a href="#" class="btn btn-primary" @click="AgregarAlCarrito()">Agregar</a>
+                <button class="btn btn-primary" @click="AgregarAlCarrito()">Agregar</button>
             </div>
         </div>
     </div>

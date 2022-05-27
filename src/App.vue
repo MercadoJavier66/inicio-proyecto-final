@@ -2,6 +2,8 @@
     <div id="app" class="container">
         <Titulo></Titulo>
 
+        <Registro></Registro>
+        <br>
         <Login></Login>
         <br>
          <Carrito
@@ -23,7 +25,7 @@
             >
             </Producto>
         </div>
-
+        <Admin-productos></Admin-productos>
     </div>
 </template>
 
@@ -37,6 +39,8 @@ import Titulo from "./components/Titulo.vue";
 import Producto from "./components/Producto.vue";
 import Carrito from "./components/Carrito.vue";
 import Login from "./components/Login.vue";
+import Registro from './components/Registro.vue';
+import AdminProductos from './components/adminProductos.vue';
 /**
  * importo axios
  */
@@ -49,7 +53,9 @@ export default {
     name: "App",
     props: [],
     components: {
-        Carrito, Producto, Titulo, Login
+        Carrito, Producto, Titulo, Login,
+        Registro,
+        AdminProductos
     },
 
     data() {
