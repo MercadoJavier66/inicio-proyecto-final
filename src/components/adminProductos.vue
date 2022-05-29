@@ -55,9 +55,21 @@ export default {
                 url: 'https://628ee4bddc47852365360ef5.mockapi.io/api/v1/productos',
             });
             this.productos = productos.data
-        }
+        },
+        async modifProducto(){
+          const prod = await Vue.axios({
+            method: 'put',
+            url: 'https://628ee4bddc47852365360ef5.mockapi.io/api/v1/productos',
+            data:  {
+                "titulo": this.titulo,
+                "descripcion": this.descripcion,
+                "nombreImagen": this.nombreImagen,
+                "precio": this.precio,
+                "cantidad": this.cantidad,
+            }
+        });
+        },
     },
-
     created(){
         this.getProductos()
     }

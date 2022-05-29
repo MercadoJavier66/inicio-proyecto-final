@@ -178,3 +178,17 @@ export default {
 
     }
 </style>
+
+
+        // async modifProducto(){
+        //     const producto = await Vue.axios({
+        //         method: 'put',
+        //         url: 'https://628ee4bddc47852365360ef5.mockapi.io/api/v1/productos',
+        //         data:  {
+        //             "nombre": this.nombre,
+        //             "email": this.email,
+        //             "contrasena": this.password,
+        //             "tipoUsuario": this.rol,
+        //         }
+        //     });
+        // },
