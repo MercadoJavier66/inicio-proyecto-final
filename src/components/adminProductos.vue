@@ -10,6 +10,7 @@
                 <th scope="col">Imagen</th>
                 <th scope="col">Precio</th>
                 <th scope="col">cantidad</th>
+                <th scope="col">Accion</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,10 @@
                     <td> <img :src="prod.nombreImagen" :alt="prod.nombreImagen" style="width: 150px;"></td>
                     <td>{{prod.precio}}</td>
                     <td>{{prod.cantidad}}</td>
+                    <td>
+                        <button type="button" class="btn btn-outline-success">Modificar</button>
+                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                    </td>
                     </tr>
             </tbody>
         </table>
@@ -52,6 +57,7 @@ export default {
             this.productos = productos.data
         }
     },
+
     created(){
         this.getProductos()
     }
