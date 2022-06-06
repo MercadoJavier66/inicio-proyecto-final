@@ -1,6 +1,7 @@
 <template>
     <div id="app" class="container">
-        <Titulo></Titulo>
+        <router-view/>
+        <!-- <Titulo></Titulo>
 
         <Registro></Registro>
         <br>
@@ -25,7 +26,7 @@
             >
             </Producto>
         </div>
-        <Admin-productos></Admin-productos>
+        <Admin-productos></Admin-productos> -->
     </div>
 </template>
 
